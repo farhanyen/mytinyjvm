@@ -19,67 +19,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b92f6e97-fd96-4f2f-a899-b3fb4792ddb2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../AssemblyProjects/AsmExperiments/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AssemblyProjects/AsmExperiments/.idea/AsmExperiments.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AssemblyProjects/AsmExperiments/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AssemblyProjects/AsmExperiments/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mybreakout/.idea/mybreakout.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IntelliJProjects/Basic/.idea/Basic.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IntelliJProjects/Basic/out/production/Basic/.idea/Basic.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../MLProjects/.idea/MLProjects.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../MLProjects/Deployments/GCE/.idea/GCE.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../MLProjects/Kaparthy/.idea/Kaparthy.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../MLProjects/quickstart/.idea/quickstart.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../MLProjects/quickstart/test3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../MLProjects/quickstart/whisper-example-2029897272/.idea/quickstart.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../MLProjects/quickstart/ytdl test/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UNSW/COMP9312/Project/.idea/Project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UNSW/COMP9319/Ass2/.idea/Ass2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UNSW/COMP9319/a2/.idea/a2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/ChromeTest/.idea/ChromeTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/ChromeTest/images/128.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/ChromeTest/images/16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/ChromeTest/images/48.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/ChromeTest/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/ChromeTest/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/ChromeTest/src/DataClass.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/ChromeTest/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/ReactProjects/myTimer/.idea/myTimer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/ReactProjects/myTimer/timer/src/timer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/Supabase/reactTest/.idea/reactTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/SupabasePractice/.idea/SupabasePractice.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/Transcribers/asbplayer-extension-0.27.0/.idea/asbplayer-extension-0.27.0.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/Transcribers/yt audio snippet/.idea/yt audio snippet.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/Translators/MIgaku-Test/.idea/MIgaku-Test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/UnlimitedSummaryGenerator/.idea/UnlimitedSummaryGenerator.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/.idea/tiffPractice.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/example/black.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/example/render.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/black-packbits.tiff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/black.tif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/cells.tif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/color16-lzw.tif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/color16.tif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/color8-lzw.tif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/color8.tif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/grey8-lzw.tif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/grey8.tif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/image-lzw.tif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/lzw-single-strip.tiff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/minisblack-1c-16b.tiff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/minisblack-1c-8b.tiff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/miniswhite-1c-1b.tiff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/palette-1c-1b.tiff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/palette-1c-4b.tiff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/palette-1c-8b.tiff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/palette.tif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/rgb-3c-16b.tiff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../WebstormProjects/tiffPractice/img/rgb-3c-8b.tiff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/data/Instance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/data/InstanceMethod.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/data/MethodCall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../UNSW/COMP9319/a2/bwtsearch.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../UNSW/COMP9319/a2/bwtsearch.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../UNSW/COMP9319/a2/bwtsearch.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../UNSW/COMP9319/a2/bwtsearch.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buf.c" beforeDir="false" afterPath="$PROJECT_DIR$/buf.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buf.h" beforeDir="false" afterPath="$PROJECT_DIR$/buf.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classloader.c" beforeDir="false" afterPath="$PROJECT_DIR$/classloader.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classloader.h" beforeDir="false" afterPath="$PROJECT_DIR$/classloader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jvm.c" beforeDir="false" afterPath="$PROJECT_DIR$/jvm.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jvm.h" beforeDir="false" afterPath="$PROJECT_DIR$/jvm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mytinyjvm" beforeDir="false" afterPath="$PROJECT_DIR$/mytinyjvm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/data/Add.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1.dSYM/Contents/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1.dSYM/Contents/Resources/DWARF/test1" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,12 +66,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "last_opened_file_path": "/Users/farha/Documents/ClionProjects/mytinyjvm",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "structure.view.defaults.are.configured": "true"
   }
 }]]></component>
@@ -126,6 +81,8 @@
       <recent name="$PROJECT_DIR$/test/data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/test/data" />
     </key>
   </component>
@@ -161,7 +118,7 @@
       <updated>1702791097007</updated>
       <workItem from="1702791098122" duration="7742000" />
       <workItem from="1703474523731" duration="82393000" />
-      <workItem from="1704088827677" duration="575000" />
+      <workItem from="1704088827677" duration="32735000" />
     </task>
     <servers />
   </component>
@@ -187,35 +144,16 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/jvm.c</url>
-          <line>193</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/jvm.c</url>
-          <line>126</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/jvm.c</url>
-          <line>100</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/jvm.c</url>
-          <line>34</line>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-      </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="CidrExceptionBreakpoint" />
+      </default-breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
-        <watch expression="*(cf-&gt;sp-1)" language="ObjectiveC" />
-        <watch expression="*method-&gt;byteCode @ &lt;Enter Size&gt;" />
-        <watch expression="*cf-&gt;locals @ 4" />
-        <watch expression="cf-&gt;locals" language="ObjectiveC" />
+        <watch expression="*cf-&gt;constant_pool @ 16" />
+        <watch expression="*cf-&gt;ip @ 9" />
+        <watch expression="*cf-&gt;locals @ 2" />
+        <watch expression="*(vmt-&gt;frames[0].locals) @ 2" />
       </configuration>
     </watches-manager>
   </component>

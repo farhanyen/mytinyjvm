@@ -4,6 +4,8 @@
 #include "buf.h"
 #include "mystring.h"
 
+
+typedef struct ClassFile ClassFile;
 enum cp_tags {
     CONSTANT_Class = 7,
     CONSTANT_Fieldref = 9,
@@ -179,8 +181,11 @@ typedef struct exception_table {
 typedef struct ByteCode {
     u2 max_stack;
     u2 max_locals;
+
+    u4 instr_idx;
     u4 code_length;
     u1 *code;
+
     u2 exception_table_length;
     exception_table* exception_tables;
     u2 attributes_count;
@@ -194,6 +199,7 @@ typedef struct method_info {
     u2             attributes_count;
     attribute_info *attributes; //[attributes_count];
 
+    ClassFile *class;
     ByteCode *byteCode;
     String name;
 } method_info;
@@ -215,10 +221,6 @@ typedef struct ClassFile {
     u2             attributes_count;
     attribute_info *attributes;
 } ClassFile;
-
-typedef struct JClass {
-    ClassFile *cf;
-} JClass;
 
 
 String get_string_from_constant_pool(ClassFile *cf, int name_index);

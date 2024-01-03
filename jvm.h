@@ -12,9 +12,6 @@
     }while(0)
 
 
-int read_file(const char *name, ByteBuf *buf);
-
-int execute_class(ClassFile *cf);
 
 enum Type {
     BYTE,
@@ -23,7 +20,8 @@ enum Type {
     SHORT,
     FLOAT,
     DOUBLE,
-    VOID
+    VOID,
+    PTR
 };
 
 typedef struct Value {
@@ -35,21 +33,50 @@ typedef struct Value {
         int i;
         float f;
         double d;
+        void *ptr;
     };
 } Value;
 
 #define INTVAL(v) (Value) {.tag = INT, .i = v}
+#define PTRVAL(v) (Value) {.tag = PTR, .ptr = v}
 #define VOIDVAL() (Value) {.tag = VOID}
+
+//typedef struct JClass {
+//    String name;
+//} JClass;
+
+typedef struct JInstance {
+    String class_name;
+} JInstance;
 
 typedef struct CallFrame {
     u1 *ip;
+    u4 code_length;
 
     u2 max_stack;
     Value *sp;
 
     u2 max_locals;
     Value *locals;
+
+    method_info *method;
+    ClassFile *class;
+
+    u2 constant_pool_count;
+    cp_info *constant_pool;
 } CallFrame;
+
+#define MAX_FRAMES 20
+
+typedef struct VMThread {
+    int frame_count;
+    CallFrame frames[MAX_FRAMES];
+
+} VMThread;
+
+int read_file(const char *name, ByteBuf *buf);
+
+int execute_class(VMThread *vmt, ClassFile *cf);
 
 enum OpCode {
     NOP = 0,	
