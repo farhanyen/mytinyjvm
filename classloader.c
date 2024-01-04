@@ -4,7 +4,12 @@
 #include <stdio.h>
 #include "classloader.h"
 
-String get_string_from_constant_pool(ClassFile *cf, int name_index) {
+String classname_from_constant_pool(ClassFile *cf, int class_index) {
+    CONSTANT_Class_info classInfo = cf->constant_pool[class_index].class_info;
+    return string_from_constant_pool(cf, classInfo.name_index);
+}
+
+String string_from_constant_pool(ClassFile *cf, int name_index) {
     CONSTANT_Utf8_info utf8_info = cf->constant_pool[name_index].utf8_info;
     String str;
     str_init(&str, utf8_info.bytes, utf8_info.length);
@@ -128,10 +133,10 @@ void parse_method_info(ByteBuf *buf, method_info *method, ClassFile *cf) {
     }
 
     method->class = cf;
-    method->name = get_string_from_constant_pool(cf, method->name_index);
+    method->name = string_from_constant_pool(cf, method->name_index);
     for (int i = 0; i < method->attributes_count; i++) {
         attribute_info attr = method->attributes[i];
-        String attr_name = get_string_from_constant_pool(cf, attr.attribute_name_index);
+        String attr_name = string_from_constant_pool(cf, attr.attribute_name_index);
         String code = str_from_literal("Code");
         if (str_compare(&attr_name, &code) == 0) {
             ByteBuf buf_code;

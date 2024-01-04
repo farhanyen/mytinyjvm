@@ -223,6 +223,7 @@ typedef struct ClassFile {
 } ClassFile;
 
 
-String get_string_from_constant_pool(ClassFile *cf, int name_index);
+String string_from_constant_pool(ClassFile *cf, int name_index);
+String classname_from_constant_pool(ClassFile *cf, int class_index);
 
 int read_class (ByteBuf *buf, ClassFile *cf);

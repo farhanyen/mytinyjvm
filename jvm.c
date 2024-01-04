@@ -8,11 +8,38 @@
 #include "buf.h"
 #include "classloader.h"
 #include <mystring.h>
+#include <assert.h>
 
 static method_info *find_method(ClassFile *cf, const char *name);
 static void JInstance_init(JInstance *instance, String name);
+static Value execute_method(VMThread *vmt, CallFrame *cf, method_info *method, Value* args, int nargs);
 
 
+int get_no_of_args(String method_descriptor) {
+    char *s = method_descriptor.data;
+    int n = method_descriptor.len;
+
+    int c = 0;
+
+    for (int i = 1; i < n; i++) {
+        switch(s[i]) {
+            case ')':
+                return c;
+            case '[':
+                break;
+            case 'L': {
+                c++;
+                while(s[i] != ';')
+                    i++;
+                break;
+            }
+            default:
+                c++;
+        }
+    }
+    assert(1==0); //should never
+    return -1;
+}
 
 void vmThread_init(VMThread *vmt) {
     vmt->frame_count = 0;
@@ -35,7 +62,7 @@ void callFrame_init(CallFrame *cf, method_info *method) {
     cf->constant_pool = method->class->constant_pool;
 }
 
-void push_stack(CallFrame *cf, Value v) {
+void stack_push(CallFrame *cf, Value v) {
     *(cf->sp++) = v;
 }
 
@@ -67,42 +94,58 @@ u1 bytecode_read_u1(CallFrame *cf) {
     return *cf->ip++;
 }
 
-Value execute_method(VMThread *vmt, method_info *method, Value *args, int nargs) {
-    if (vmt->frame_count >= MAX_FRAMES) {
-        printf("Exceeded max frames");
-        exit(1);
-    }
+Value execute_static_method(VMThread *vmt, method_info *method, Value *args, int nargs) {
+    assert(vmt->frame_count <= MAX_FRAMES);
     CallFrame *cf = &vmt->frames[vmt->frame_count++];
     callFrame_init(cf, method);
     for (int i = 0; i < nargs; i++) {
         cf->locals[i] = args[i];
     }
+    Value v = execute_method(vmt, cf, method, args, nargs);
+    frame_pop(vmt);
+    return v;
+}
 
+Value execute_virtual_method(VMThread *vmt, method_info *method, JInstance *this, Value *args, int nargs) {
+    assert(vmt->frame_count <= MAX_FRAMES);
+    CallFrame *cf = &vmt->frames[vmt->frame_count++];
+    callFrame_init(cf, method);
 
+    cf->locals[0] = PTRVAL(this);
+    for (int i = 0; i < nargs; i++) {
+        cf->locals[i+1] = args[i];
+    }
+    Value v = execute_method(vmt, cf, method, args, nargs);
+    frame_pop(vmt);
+    return v;
+}
+
+Value execute_method(VMThread *vmt, CallFrame *cf, method_info *method, Value *args, int nargs) {
     while (1) {
         switch(bytecode_read_u1(cf)) {
             case ICONST_0:
-                push_stack(cf, INTVAL(0));
+                stack_push(cf, INTVAL(0));
                 break;
             case ICONST_1:
-                push_stack(cf, INTVAL(1));
+                stack_push(cf, INTVAL(1));
                 break;
             case ICONST_2:
-                push_stack(cf, INTVAL(2));
+                stack_push(cf, INTVAL(2));
                 break;
             case ICONST_3:
-                push_stack(cf, INTVAL(3));
+                stack_push(cf, INTVAL(3));
                 break;
             case ICONST_4:
-                push_stack(cf, INTVAL(4));
+                stack_push(cf, INTVAL(4));
                 break;
             case ICONST_5:
-                push_stack(cf, INTVAL(5));
+                stack_push(cf, INTVAL(5));
                 break;
             case ISTORE_0:
                 cf->locals[0] = stack_pop(cf);
                 break;
             case ISTORE_1:
+            case ASTORE_1:
                 cf->locals[1] = stack_pop(cf);
                 break;
             case ISTORE_2:
@@ -112,76 +155,104 @@ Value execute_method(VMThread *vmt, method_info *method, Value *args, int nargs)
                 cf->locals[3] = stack_pop(cf);
                 break;
             case ILOAD_0:
-                push_stack(cf, (cf->locals[0]));
+                stack_push(cf, (cf->locals[0]));
                 break;
             case ILOAD_1:
-                push_stack(cf, (cf->locals[1]));
+            case ALOAD_1:
+                stack_push(cf, (cf->locals[1]));
                 break;
             case ILOAD_2:
-                push_stack(cf, (cf->locals[2]));
+                stack_push(cf, (cf->locals[2]));
                 break;
             case ILOAD_3:
-                push_stack(cf, (cf->locals[3]));
+                stack_push(cf, (cf->locals[3]));
                 break;
             case IADD: {
                 int i1 = stack_pop(cf).i;
                 int i2 = stack_pop(cf).i;
-                push_stack(cf, INTVAL(i1+i2));
-                break;
-            }
-            case INVOKESTATIC: {
-                u2 i = bytecode_read_u2(cf);
-                CONSTANT_MethodRef_info methodRef_info = cf->constant_pool[i].methodRef_info;
-                CONSTANT_NameAndType_info nameAndType_info = cf->constant_pool[methodRef_info.name_and_type_index].nameAndType_info;
-                String name = get_string_from_constant_pool(cf->class, nameAndType_info.name_index);
-                method_info *method = find_method(cf->class, name.data);
-
-                Value args[2];
-                args[1] = stack_pop(cf);
-                args[0] = stack_pop(cf);
-                Value retVal = execute_method(vmt, method, args, 2);
-                frame_pop(vmt);
-                push_stack(cf, retVal);
+                stack_push(cf, INTVAL(i1 + i2));
                 break;
             }
             case NEW: {
                 u2 class_index = bytecode_read_u2(cf);
                 CONSTANT_Class_info class_info = cf->constant_pool[class_index].class_info;
-                String class_name = get_string_from_constant_pool(cf->class, class_info.name_index);
+                String class_name = string_from_constant_pool(cf->class, class_info.name_index);
                 JInstance *instance = malloc(sizeof(*instance));
                 JInstance_init(instance, class_name);
-                push_stack(cf, PTRVAL(instance));
+                stack_push(cf, PTRVAL(instance));
                 break;
             }
             case DUP:
-                push_stack(cf, stack_top(cf));
+                stack_push(cf, stack_top(cf));
                 break;
+            case INVOKEVIRTUAL: {
+                u2 methodref_index = bytecode_read_u2(cf);
+
+                CONSTANT_MethodRef_info methodRefInfo = cf->constant_pool[methodref_index].methodRef_info;
+
+                String class_name = classname_from_constant_pool(cf->class, methodRefInfo.class_index);
+                String this_class_name = classname_from_constant_pool(cf->class, cf->class->this_class);
+
+                if (str_compare(&class_name, &this_class_name) != 0) {
+                    break;
+                } //object <init> skip
+
+
+                CONSTANT_NameAndType_info nameAndTypeInfo = cf->constant_pool[methodRefInfo.name_and_type_index].nameAndType_info;
+                String method_name = string_from_constant_pool(cf->class, nameAndTypeInfo.name_index);
+                String method_descriptor = string_from_constant_pool(cf->class, nameAndTypeInfo.descriptor_index);
+
+                int n = get_no_of_args(method_descriptor);
+                Value args[n];
+                for (int i = n-1; i >= 0; i--) {
+                    args[i] = stack_pop(cf);
+                };
+
+                JInstance *this = stack_pop(cf).ptr;
+                method_info *method = find_method(cf->class, method_name.data);
+                Value retVal = execute_virtual_method(vmt, method, this, args, 2);
+                stack_push(cf, retVal);
+                break;
+            }
+            case INVOKESTATIC: {
+                u2 i = bytecode_read_u2(cf);
+
+                CONSTANT_MethodRef_info methodRef_info = cf->constant_pool[i].methodRef_info;
+                CONSTANT_NameAndType_info nameAndTypeInfo = cf->constant_pool[methodRef_info.name_and_type_index].nameAndType_info;
+
+                String method_name = string_from_constant_pool(cf->class, nameAndTypeInfo.name_index);
+                String method_descriptor = string_from_constant_pool(cf->class, nameAndTypeInfo.descriptor_index);
+                int n = get_no_of_args(method_descriptor);
+                Value args[n];
+                for (int i = n-1; i >= 0; i--) {
+                    args[i] = stack_pop(cf);
+                };
+
+                method_info *method = find_method(cf->class, method_name.data);
+                Value retVal = execute_static_method(vmt, method, args, 2);
+                stack_push(cf, retVal);
+                break;
+            }
             case INVOKESPECIAL: {
                 u2 methodref_index = bytecode_read_u2(cf);
                 break;
 
                 CONSTANT_MethodRef_info methodRefInfo = cf->constant_pool[methodref_index].methodRef_info;
 
-                CONSTANT_Class_info classInfo = cf->constant_pool[methodRefInfo.class_index].class_info;
-                String class_name = get_string_from_constant_pool(cf, classInfo.name_index);
-
-                CONSTANT_Class_info thisClassInfo = cf->constant_pool[cf->class->this_class].class_info;
-                String this_class_name = get_string_from_constant_pool(cf, thisClassInfo.name_index);
+                String class_name = classname_from_constant_pool(cf->class, methodRefInfo.class_index);
+                String this_class_name = classname_from_constant_pool(cf->class, cf->class->this_class);
 
                 CONSTANT_NameAndType_info nameAndTypeInfo = cf->constant_pool[methodRefInfo.name_and_type_index].nameAndType_info;
-                String method_name = get_string_from_constant_pool(cf, nameAndTypeInfo.name_index);
+                String method_name = string_from_constant_pool(cf, nameAndTypeInfo.name_index);
 
-                if (str_compare(&class_name, &this_class_name) != 0)
-                    break; //object <init> skip
+                if (str_compare(&class_name, &this_class_name) != 0) {
+                    break;
+                } //object <init> skip
 
                 method_info *method = find_method(cf, method_name.data);
-                execute_method(vmt, method, NULL, 0);
-                frame_pop(vmt);
+//                execute_method(vmt, method, NULL, 0);
                 break;
             }
-            case ASTORE_1:
-                cf->locals[1] = stack_pop(cf);
-                break;
             case IRETURN: {
                 Value val = stack_pop(cf);
                 if (val.tag != INT) {
@@ -199,7 +270,7 @@ Value execute_method(VMThread *vmt, method_info *method, Value *args, int nargs)
 method_info *find_method(ClassFile *cf, const char *name) {
     for (int i = 0; i < cf->methods_count; i++) {
         method_info *method = &cf->methods[i];
-        String n1 = get_string_from_constant_pool(cf, method->name_index);
+        String n1 = string_from_constant_pool(cf, method->name_index);
         String n2;
         str_init(&n2, name, strlen(name));
         if (str_compare(&n1, &n2) == 0) {
@@ -221,7 +292,12 @@ int execute_class(VMThread *vmt, ClassFile *class) {
         return -1;
     }
 
-    execute_method(vmt, main, NULL, 0);
+    assert(vmt->frame_count <= MAX_FRAMES);
+    CallFrame *cf = &vmt->frames[vmt->frame_count++];
+    callFrame_init(cf, main);
+
+
+    Value v = execute_method(vmt, cf, main, NULL, 0);
 
     return 0;
 }
@@ -305,24 +381,31 @@ int test_execute_methodCall_class() {
 }
 
 int test_execute_instance_class() {
-//    VMThread vmt;
-    VMThread *vmt = malloc(sizeof(*vmt));
-    vmThread_init(vmt);
-    test_execute_class(vmt, "./test/data/Instance.class");
+    VMThread vmt;
+    vmThread_init(&vmt);
+    test_execute_class(&vmt, "./test/data/Instance.class");
 
-    ASSERT_EQ(PTR, frame_top(vmt)->locals[1].tag);
+    ASSERT_EQ(PTR, frame_top(&vmt)->locals[1].tag);
     String exp_classname = str_from_literal("Instance");
-    String act_classname = ((JInstance *) frame_top(vmt)->locals[1].ptr)->class_name;
+    String act_classname = ((JInstance *) frame_top(&vmt)->locals[1].ptr)->class_name;
     ASSERT_EQ(0, str_compare(&exp_classname, &act_classname));
 }
 
+int test_execute_instanceMethod_class() {
+    VMThread vmt;
+    vmThread_init(&vmt);
+    test_execute_class(&vmt, "./test/data/InstanceMethod.class");
+
+    ASSERT_EQ(3, frame_top(&vmt)->locals[2].i);
+}
 
 
 int main() {
-//    test_basic_class();
-//    test_execute_add_class();
-//    test_execute_methodCall_class();
+    test_basic_class();
+    test_execute_add_class();
+    test_execute_methodCall_class();
     test_execute_instance_class();
+    test_execute_instanceMethod_class();
 //    ByteBuf buf;
 //    read_file("./test/data/Long.class", &buf);
 //    ClassFile class;

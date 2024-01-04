@@ -18,22 +18,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b92f6e97-fd96-4f2f-a899-b3fb4792ddb2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/Instance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/InstanceMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/MethodCall.java" afterDir="false" />
+    <list default="true" id="b92f6e97-fd96-4f2f-a899-b3fb4792ddb2" name="Changes" comment="static method and instance creation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buf.c" beforeDir="false" afterPath="$PROJECT_DIR$/buf.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buf.h" beforeDir="false" afterPath="$PROJECT_DIR$/buf.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classloader.c" beforeDir="false" afterPath="$PROJECT_DIR$/classloader.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classloader.h" beforeDir="false" afterPath="$PROJECT_DIR$/classloader.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jvm.c" beforeDir="false" afterPath="$PROJECT_DIR$/jvm.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jvm.h" beforeDir="false" afterPath="$PROJECT_DIR$/jvm.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mytinyjvm" beforeDir="false" afterPath="$PROJECT_DIR$/mytinyjvm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/data/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/data/Add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1.dSYM/Contents/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1.dSYM/Contents/Resources/DWARF/test1" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,21 +51,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "last_opened_file_path": "/Users/farha/Documents/ClionProjects/mytinyjvm",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "structure.view.defaults.are.configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/farha/Documents/ClionProjects/mytinyjvm&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/test/data" />
@@ -118,8 +108,17 @@
       <updated>1702791097007</updated>
       <workItem from="1702791098122" duration="7742000" />
       <workItem from="1703474523731" duration="82393000" />
-      <workItem from="1704088827677" duration="32735000" />
+      <workItem from="1704088827677" duration="33460000" />
+      <workItem from="1704277093240" duration="5708000" />
     </task>
+    <task id="LOCAL-00001" summary="static method and instance creation">
+      <created>1704276982480</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1704276982480</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +140,8 @@
       <path value="$PROJECT_DIR$/../.." />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+    <MESSAGE value="static method and instance creation" />
+    <option name="LAST_COMMIT_MESSAGE" value="static method and instance creation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -150,10 +151,8 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
-        <watch expression="*cf-&gt;constant_pool @ 16" />
-        <watch expression="*cf-&gt;ip @ 9" />
-        <watch expression="*cf-&gt;locals @ 2" />
-        <watch expression="*(vmt-&gt;frames[0].locals) @ 2" />
+        <watch expression="*cf-&gt;ip @ 16" />
+        <watch expression="*cf-&gt;locals @ 3" />
       </configuration>
     </watches-manager>
   </component>
