@@ -2,6 +2,8 @@
 // Created by Farhan Zain on 27/12/2023.
 //
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "classloader.h"
 
 String classname_from_constant_pool(ClassFile *cf, int class_index) {
@@ -147,8 +149,7 @@ void parse_method_info(ByteBuf *buf, method_info *method, ClassFile *cf) {
     }
 }
 
-
-int read_class (ByteBuf *buf, ClassFile *cf) {
+int _read_class(ByteBuf *buf, ClassFile *cf) {
     u4 magic = buf_read_u4(buf);
     if (magic != 0xcafebabe) {
         printf("magic wrong %x", magic);
@@ -204,5 +205,36 @@ int read_class (ByteBuf *buf, ClassFile *cf) {
     return 0;
 }
 
+int read_class (ByteBuf *buf, ClassFile *cf) {
+    _read_class(buf, cf);
+}
 
+String str_from_member(String class, String name, String descriptor) {
+    char *buf = malloc(100 * sizeof(*buf));
+    memset(buf, 0, 100 * sizeof(buf[0]));
+    sprintf(buf, "%.*s.%.*s:%.*s",
+            class.len, class.data,
+            name.len, name.data,
+            descriptor.len, descriptor.data
+    );
+    int n = strlen(buf);
+    String member;
+    str_init(&member, buf, n);
+    return member;
+}
+
+void process_class(ClassFile *cls, HashTable *ht) {
+    cls->name = classname_from_constant_pool(cls, cls->this_class);
+    for (int i = 0; i < cls->methods_count; i++) {
+        method_info *method = &cls->methods[i];
+        String descriptor_name = string_from_constant_pool(cls, method->descriptor_index);
+        String *methodKey = malloc(sizeof(*methodKey));
+        *methodKey = str_from_member(cls->name, method->name, descriptor_name);
+        Value *v = malloc(sizeof(*v));
+        *v = PTRVAL(method);
+
+        ht_put(ht, methodKey, v);
+    }
+
+}
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "mystring.h"
+#include "types.h"
 
 #define HASHTABLE_INIT_SIZE 8
 

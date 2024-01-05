@@ -3,7 +3,7 @@
 #include "types.h"
 #include "buf.h"
 #include "mystring.h"
-
+#include "hashtable.h"
 
 typedef struct ClassFile ClassFile;
 enum cp_tags {
@@ -182,7 +182,6 @@ typedef struct ByteCode {
     u2 max_stack;
     u2 max_locals;
 
-    u4 instr_idx;
     u4 code_length;
     u1 *code;
 
@@ -220,10 +219,29 @@ typedef struct ClassFile {
     method_info    *methods;
     u2             attributes_count;
     attribute_info *attributes;
+
+    String name;
 } ClassFile;
+
+typedef struct JClass {
+    String name;
+    ClassFile *cf;
+
+} JClass;
+
+typedef struct JMethod {
+    String class_name;
+    String method_name;
+    String descriptor;
+    String key;
+
+    ByteCode *byteCode;
+    method_info *method;
+} JMethod;
 
 
 String string_from_constant_pool(ClassFile *cf, int name_index);
 String classname_from_constant_pool(ClassFile *cf, int class_index);
-
+String str_from_member(String class, String name, String descriptor);
+void process_class(ClassFile *cls, HashTable *ht);
 int read_class (ByteBuf *buf, ClassFile *cf);

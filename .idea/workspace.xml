@@ -8,8 +8,9 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
+      <config projectName="mytinyjvm" targetName="test_jvm" />
       <config projectName="mytinyjvm" targetName="test" />
-      <config projectName="mytinyjvm" targetName="mytinyjvm" />
+      <config projectName="mytinyjvm" targetName="test_classloader" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -18,12 +19,24 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b92f6e97-fd96-4f2f-a899-b3fb4792ddb2" name="Changes" comment="static method and instance creation">
+    <list default="true" id="b92f6e97-fd96-4f2f-a899-b3fb4792ddb2" name="Changes" comment="invokevirtual and parse no of method arguments">
+      <change afterPath="$PROJECT_DIR$/test.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/data/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/data/InstanceFields.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_classloader.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_jvm.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buf.c" beforeDir="false" afterPath="$PROJECT_DIR$/buf.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buf.h" beforeDir="false" afterPath="$PROJECT_DIR$/buf.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classloader.c" beforeDir="false" afterPath="$PROJECT_DIR$/classloader.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classloader.h" beforeDir="false" afterPath="$PROJECT_DIR$/classloader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hashtable.c" beforeDir="false" afterPath="$PROJECT_DIR$/hashtable.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hashtable.h" beforeDir="false" afterPath="$PROJECT_DIR$/hashtable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jvm.c" beforeDir="false" afterPath="$PROJECT_DIR$/jvm.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mytinyjvm" beforeDir="false" afterPath="$PROJECT_DIR$/mytinyjvm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jvm.h" beforeDir="false" afterPath="$PROJECT_DIR$/jvm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mytinyjvm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/types.h" beforeDir="false" afterPath="$PROJECT_DIR$/types.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,13 +89,13 @@
       <recent name="$PROJECT_DIR$/test/data" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.mytinyjvm">
-    <configuration name="Test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="test" EXPLICIT_BUILD_TARGET_NAME="all">
+  <component name="RunManager" selected="CMake Application.test_jvm">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="mytinyjvm" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mytinyjvm" TARGET_NAME="mytinyjvm" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mytinyjvm" RUN_TARGET_NAME="mytinyjvm">
+    <configuration name="Test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="test" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -92,9 +105,20 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test_classloader" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mytinyjvm" TARGET_NAME="test_classloader" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mytinyjvm" RUN_TARGET_NAME="test_classloader">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test_jvm" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mytinyjvm" TARGET_NAME="test_jvm" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mytinyjvm" RUN_TARGET_NAME="test_jvm">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="CMake Application.mytinyjvm" />
       <item itemvalue="CMake Application.test" />
+      <item itemvalue="CMake Application.test_classloader" />
+      <item itemvalue="CMake Application.test_jvm" />
       <item itemvalue="CMake Application.Test" />
     </list>
   </component>
@@ -109,7 +133,7 @@
       <workItem from="1702791098122" duration="7742000" />
       <workItem from="1703474523731" duration="82393000" />
       <workItem from="1704088827677" duration="33460000" />
-      <workItem from="1704277093240" duration="5708000" />
+      <workItem from="1704277093240" duration="37058000" />
     </task>
     <task id="LOCAL-00001" summary="static method and instance creation">
       <created>1704276982480</created>
@@ -118,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704276982480</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="invokevirtual and parse no of method arguments">
+      <created>1704349809451</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1704349809451</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,7 +172,8 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="static method and instance creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="static method and instance creation" />
+    <MESSAGE value="invokevirtual and parse no of method arguments" />
+    <option name="LAST_COMMIT_MESSAGE" value="invokevirtual and parse no of method arguments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -151,8 +183,12 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
-        <watch expression="*cf-&gt;ip @ 16" />
-        <watch expression="*cf-&gt;locals @ 3" />
+        <watch expression="cf-&gt;stack_idx" language="ObjectiveC" />
+        <watch expression="cf-&gt;code_idx" language="ObjectiveC" />
+        <watch expression="*cf-&gt;code @ cf-&gt;code_length" language="ObjectiveC" />
+        <watch expression="*cf-&gt;stack @ cf-&gt;max_stack" language="ObjectiveC" />
+        <watch expression="*vmt-&gt;ht.items @ 8" />
+        <watch expression="*ht-&gt;items @ 8" />
       </configuration>
     </watches-manager>
   </component>

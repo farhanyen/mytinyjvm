@@ -3,13 +3,15 @@
 #include <stdio.h>
 
 int key_cmp(String *k1, String *k2) {
-    return (k1->hash == k2->hash) && str_compare(k1, k2);
+    if (k1->hash != k2->hash)
+        return 1;
+    return str_compare(k1, k2);
 }
 
 HashTableValue ht_get (HashTable *ht, String *key) {
     int i = key->hash & (ht->size - 1);
     HashEntry *cur = &ht->items[i];
-    while (cur != NULL) {
+    while (cur != NULL && cur->key != NULL) {
         if (!key_cmp(cur->key, key))
             return cur->value;
         cur = cur->next;
@@ -46,10 +48,10 @@ void ht_resize(HashTable *ht, int s) {
     ht->size = s;
 
     for (int i = 0; i < old_size; i++) {
-        HashEntry *cur = &old_items;
-        while (cur != NULL) {
-            __ht_put(ht, cur->key, cur->value);
-            cur = cur->next;
+        HashEntry *e = &old_items[i];
+        while (e != NULL && e->key != NULL) {
+            __ht_put(ht, e->key, e->value);
+            e = e->next;
         }
     }
 
